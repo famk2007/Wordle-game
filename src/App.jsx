@@ -1,11 +1,11 @@
 import {useRef, useState} from "react";
 import Accueil from "./components/Accueil.jsx";
 import Chargement from "./components/Chargement.jsx";
-import Jeu from"./components/Jeu.jsx";
+import {Jeu} from "./components/Jeu.jsx";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import "./assets/Logo.png";
-import './app.css';
+import styled from "styled-components";
 
 function App() {
     // l'état garde en mémoire l'étape active
@@ -21,11 +21,13 @@ function App() {
     };
 
     return (
-        <div className="app-layout">
+        <AppLayout>
             <Header />
-        <div className="top-100 bg-body-secondary d-flex align-items-center justify-content-center h-100 bg-light">
+            {/* Conteneur principal flexible et adapté au jeu */}
+            <MainContent>
             {etape === 'Accueil' && (
                 <Accueil onStart={lancerChargement} />
+
             )}
 
             {etape === 'Chargement' && (
@@ -35,10 +37,31 @@ function App() {
             {etape === 'Jeu' && (
                 <Jeu />
             )}
-        <Footer />
-        </div>
-        </div>
+            </MainContent>
+            <Footer />
+        </AppLayout>
     );
 }
 
 export default App;
+
+// --- Styles avec Styled Components ----
+const AppLayout = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #111112; /* Fond sombre Wordle par défaut */
+    color: #ffffff;
+    font-family: helvetica;
+`;
+
+const MainContent = styled.main`
+flex: 2;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+padding: 10px;
+overflow-y: auto;
+font-family: "helvetica neue", helvetica, arial, sans-serif;
+`;

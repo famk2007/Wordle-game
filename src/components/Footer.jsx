@@ -1,12 +1,57 @@
-import './Footer.css';
+import React from 'react';
+import styled from 'styled-components';
 
-export default  function Footer() {
+export default function Footer() {
     return (
-        <footer className="footer d-flex">
-            <p>&copy; {new Date().getFullYear()} Wordle game. Tous droits réservés.</p>
-            <div className="footer-links">
-                <h1 className="Title-game">Wordle game</h1>
-            </div>
-            </footer>
+        <FooterContainer>
+            <FooterText>
+                &copy; {new Date().getFullYear()} Wordle Game. Tous droits réservés.
+            </FooterText>
+
+            <FooterLinks>
+                {/* Remplacement du h1 par un span ou un lien plus adapté pour un footer */}
+                <BrandName>Wordle Game</BrandName>
+            </FooterLinks>
+        </FooterContainer>
     );
 }
+
+/* ==========================================
+   STYLES AVEC STYLED-COMPONENTS
+   ========================================== */
+
+const FooterContainer = styled.footer`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #121213; /* Fond sombre assorti au jeu */
+  color: #818384; /* Texte gris discret */
+  border-top: 1px solid #3a3a3c;
+  width: 100%;
+  gap: 10px;
+  font-size: 0.9rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 40px;
+  }
+`;
+
+const FooterText = styled.p`
+  margin: 0;
+`;
+
+const FooterLinks = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const BrandName = styled.span`
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #818384;
+  letter-spacing: 1px;
+`;
